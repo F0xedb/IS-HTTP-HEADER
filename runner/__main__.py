@@ -22,7 +22,28 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 # SOFTWARE.
 
-# TODO: add a input parser
+import runner.input
+import runner.request
+import runner.builder
+import runner.csvgen
+
+domain = runner.input.getInput()
+headers = runner.request.resolve(domain)
+
+totalscore = 0
+lowestScore = 11
+reason = ""
+# loop over every header and matc it with a http header handler
+for header in headers:
+    match = runner.builder.match(header, headers)
+    score = match.score()
+    totalscore += score
+    if score < lowestScore:
+        reason = match.reason()
+
+normalizedScore = int(totalscore / len(headers))
+print(runner.csvgen.generateCSV(domain, normalizedScore, reason))
+
 # TODO: implement classes for every http header
 # TODO: Add scoring system
 # TODO: Weight the total score
