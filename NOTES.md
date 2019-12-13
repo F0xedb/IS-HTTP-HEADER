@@ -7,3 +7,23 @@
     - Input via stdin or argumant
     - Output over stdout or file
     - Module should only depend on the default python api (no extra dependencies)
+    - Research
+        - Looking into OWASP (owasp.org) for general security regarding web
+
+Research notes:
+* OWASP (Open Web Application Security Project) Interesting look to figure out what to check upon
+
+* Scanning google http headers for www.google.com
+
+| Headers type     | Meaning                                          |
+|------------------|--------------------------------------------------|
+| Date             | date when the message was send                   |
+| Expires          | date and time when response is considered stale  |
+| Cache-Control    | Rules for caching (in seconds)                   |
+| Content-Type     | Indicates resource media type                    |
+| Content-Encoding | Indicates encoding eg gzip                       |
+| Server           | Information abut how the server handles requests |
+| Content-Length   | Indicates the body size                          |
+| X-XSS-Protection | Stops pages from loading when detecting xss      |
+| X-Frame-Options  | Avoid clickjacking                               |
+| Set-Cookie       | Sends cookie from server to client               |
