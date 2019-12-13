@@ -83,7 +83,7 @@ sudo apt-get install python3
  
 1. Clone the IS-HTTP-HEADER repo
 ```sh
-git clone https://github.com/F0xedb/IS-HTTP-HEADER.git
+git clone "https://github.com/F0xedb/IS-HTTP-HEADER.git"
 ```
 2. Check if python is installed
 ```sh
@@ -97,8 +97,8 @@ command -v python || command -v python3 # depends on where your python3 is symli
 
 Using this tool is rather easy. Simply use the following command
 
-```
-python main.py <endpoint>
+```sh
+python main.py "<endpoint>"
 ```
 
 > Endpoint in the example above can either be a ip, URL, URI or domain
@@ -146,7 +146,7 @@ Project Link: [https://github.com/F0xedb/IS-HTTP-HEADER](https://github.com/F0xe
 <!-- ACKNOWLEDGEMENTS -->
 ## Acknowledgements
 
-* [F0xedb](https://github.com/F0xedb/IS-HTTP-HEADER)
+* [F0xedb](https://github.com/F0xedb)
 
 
 
