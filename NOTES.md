@@ -27,3 +27,8 @@ Research notes:
 | X-XSS-Protection | Stops pages from loading when detecting xss      |
 | X-Frame-Options  | Avoid clickjacking                               |
 | Set-Cookie       | Sends cookie from server to client               |
+
+* Start research python http standard library got gather all http headers
+    - interesting read (https://bugs.python.org/issue4773)
+    - documentation (https://docs.python.org/3/library/urllib.html)
+    - Concrete implementation (https://docs.python.org/3/library/urllib.request.html#module-urllib.request)

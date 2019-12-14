@@ -21,9 +21,17 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 # SOFTWARE.
 
+import urllib.request
+
 def resolve(domain):
     """
     Returns a list of Tuples containing the http header type and its value.
     It gets this data from performing a http get request to the server
     """
-    return [("test-header", "this is a test value")]
+    response = urllib.request.urlopen(domain)
+    headers = response.info().raw_items()
+    # convert genertor to a generic list
+    list = []
+    for header, value in headers:
+        list.append((header, value))
+    return list
