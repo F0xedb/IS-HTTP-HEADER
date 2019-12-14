@@ -87,6 +87,8 @@ sudo apt-get install python3
 1. Clone the IS-HTTP-HEADER repo
 ```sh
 git clone "https://github.com/F0xedb/IS-HTTP-HEADER.git"
+# or over ssh
+git clone "git@github.com:F0xedb/IS-HTTP-HEADER.git"
 ```
 2. Check if python is installed
 ```sh
