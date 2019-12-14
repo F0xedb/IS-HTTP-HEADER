@@ -43,7 +43,9 @@ def resolve(domain):
     It gets this data from performing a http get request to the server
     """
     domain = _normalizeURI(domain)
-    response = urllib.request.urlopen(domain, timeout=runner.config.PING_TIMEOUT)
+    request = urllib.request.Request(domain)
+    request.add_header('Accept-encoding', 'gzip,deflate')
+    response = urllib.request.urlopen(request, timeout=runner.config.PING_TIMEOUT)
     headers = response.info().raw_items()
     # convert genertor to a generic list
     list = []

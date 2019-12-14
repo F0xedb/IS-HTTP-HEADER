@@ -20,35 +20,25 @@
 # LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 # SOFTWARE.
-
+import runner.headers.httpheader as generic
 import runner.config
 
-class httpheader:
-    """
-    This is a base class each http header should inherit
-    It contains all methods that need to be implemented in order to generate a final result
-    """
-    name = "HTTP_HEADER_NAME" # this name should match the real http header name. It is used to match the class to the real header
-    missingScore = 0 # score to give when the header is not found
-
+class ServerHeader(generic.httpheader):
+    name="Server"
+    badReason = ["No server header specified. Cannot determin type of server", "Server is of unknown type"]
+    missingScore=runner.config.MISSING_SCORE_SERVER_HEADER# No cors is very safe
     def __init__(self, value, headers):
-        """
-        Value is the payload supplied with the header
-        headers is a list of tuples containing all http headers in the response
-        """
-        self.value = value
-        self.headers = headers
-        self.reason = runner.config.SCORE_IDEAL # in case no reason was found
-
+        super().__init__(value, headers)
     
     def score(self):
         """
         returns a float containing the score for this header (between 0.0 and 10.0)
         """
-        return 10
-    
-    def reason(self):
-        """
-        Returns a string why the score is what is is
-        """
-        return self.reason
+
+        # gws is the google web server
+        if "Apache" in self.value or "nginx" in self.value or "gws" in self.value:
+            return 10
+        # Cannot determin server type
+        self.reason = self.badReason[1]
+        # Unknown server. Could be malicious
+        return 7

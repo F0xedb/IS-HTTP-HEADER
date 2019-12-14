@@ -25,10 +25,12 @@ import runner.headers.httpheader as header
 import runner.headers.contentEncodingHeader as encoding
 import runner.headers.XSSHeader as xss
 import runner.headers.CORSHeader as CORS
+import runner.headers.ServerHeader as Server
+import runner.headers.XFrameHeader as XFrame
 
 # all different headers to resolve
 # they must inherit httpheader at least
-headerResolver = [encoding.ContentEncodingHeader, xss.XSSHeader, CORS.CORSHeader]
+headerResolver = [encoding.ContentEncodingHeader, xss.XSSHeader, CORS.CORSHeader, Server.ServerHeader, XFrame.XFrameHeader]
 
 
 def match(httpResponse, headers):

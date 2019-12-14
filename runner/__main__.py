@@ -51,7 +51,7 @@ def scoreCheck(score, meaning):
 for header in headers:
     match = runner.builder.match(header, headers)
     if not match == None:
-        scoreCheck(match.score(), match.reason())
+        scoreCheck(match.score(), match.reason)
 
 # check if there are missing headers
 missingScore, missingReason = runner.checkMissing.check(headers)
