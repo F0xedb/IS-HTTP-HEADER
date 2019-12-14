@@ -63,7 +63,7 @@
 
 To get a local copy up and running follow these simple steps.
 This software has been tested on RHEL 8, Arch linux and TOS linux
-It should work on most Operating systems as long as they have Python3 installed
+It should work on most Operating systems as long as they have Python3 installed with pytz (python timezone)
 
 ### Prerequisites
 
@@ -82,6 +82,18 @@ sudo yum install python3
 Debian, ubuntu and more
 ```sh
 sudo apt-get install python3
+```
+
+Make sure `pytz` is installed
+
+Arch Linux
+```sh
+sudo pacman -Syu python-pytz
+```
+
+PIP
+```sh
+sudo pip install pytz
 ```
 
 ### Installation
