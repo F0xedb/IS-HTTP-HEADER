@@ -33,3 +33,4 @@ DEFAULT_PROTOCOL=PROTOCOLS[0] # default protocol to use in case none is provided
 
 MISSING_SCORE_CONTENT_ENCODING=5 # no compression is rather bad but that can be dealt with
 MISSING_SCORE_XSS=0 # no protection against cross site scripting is bad
+MISSING_SCORE_CORS=10 # no cors is very safe

@@ -32,3 +32,6 @@ Research notes:
     - interesting read (https://bugs.python.org/issue4773)
     - documentation (https://docs.python.org/3/library/urllib.html)
     - Concrete implementation (https://docs.python.org/3/library/urllib.request.html#module-urllib.request)
+* Started research on standardized http headers
+    - http headers on wikipedia (https://en.wikipedia.org/wiki/List_of_HTTP_header_fields)
+    - RFCs 7230, 7231, 7232, 7233, 7234, and 7235 contain standardized http headers
