@@ -23,6 +23,5 @@
 version: "3"
 services:
   python:
-    #build: .
-    image: http
-    command: "python -m runner tos.pbfp.xyz"
+    build: .
+    command: "python -m runner google.com"

@@ -41,9 +41,11 @@
   * [Prerequisites](#prerequisites)
   * [Installation](#installation)
 * [Usage](#usage)
+  * [General](#general)
+  * [Docker](#docker)
+* [Extend](#Extend)
   * [Headers](#Headers)
   * [STDout](#STDout)
-* [Extend](#Extend)
 * [Roadmap](#roadmap)
 * [Contributing](#contributing)
 * [License](#license)
@@ -100,6 +102,8 @@ command -v python || command -v python3 # depends on where your python3 is symli
 <!-- USAGE EXAMPLES -->
 ## Usage
 
+
+### general
 Using this tool is rather easy. Simply use the following command
 
 ```sh
@@ -118,6 +122,45 @@ python -m runner "http://google.com"
 > All of the above will produces the same outout (except for the last one as that uses http)
 
 > Endpoint in the example above can either be a ip, URL, URI or domain
+
+### docker
+
+You can also use this tool with `docker` or `docker-compose`.
+Here is a quick and simple tutorial
+
+Using docker:
+
+1. build the image
+```sh
+docker build -t <name> .
+```
+2. run the image with google
+```sh
+docker run <name>
+```
+3. run the image with a custom domain
+```sh
+docker run -it --rm http python -m runner <domain> # where domain is the domain you want to scan
+```
+
+Alternativly you can use docker-compose to perform a scan
+
+1. Run a scan to google.com
+```sh
+docker-compose up
+```
+2. Run a scan to a custom domain
+```yml
+version: "3"
+services:
+  python:
+    build: .
+    command: "python -m runner <domain>" # where domain is the domain you want to scan
+```
+3. run a scan to a custom domain without editing the yaml file
+```sh
+docker-compose run python "python"  "-m" "runner" "<domain>" # where domain is the domain you want to scan
+```
 
 _For more examples, please refer to the [Documentation](https://github.com/F0xedb/IS-HTTP-HEADER)_
 
