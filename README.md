@@ -148,7 +148,7 @@ import runner.config
 class XSSHeader(generic.httpheader):
     name="X-XSS-Protection"
     badReason = ["No protection against cross site scripting"]
-    missingScore=runner.config.MISSING_SCORE_XSS # to protection is really bad
+    missingScore=runner.config.MISSING_SCORE_XSS # no protection is really bad
 
     def __init__(self, value, headers):
         super().__init__(value, headers)
