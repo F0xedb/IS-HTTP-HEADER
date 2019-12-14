@@ -31,4 +31,7 @@ setup(name='httpheaderscan',
       author_email='tom@odex.be',
       url='',
       packages=['runner', 'runner.headers'],
+      install_requires=[
+          'pytz',
+      ],
      )

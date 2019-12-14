@@ -31,9 +31,15 @@ PROTOCOLS=["https", "http"] # possible protocols to test
 
 DEFAULT_PROTOCOL=PROTOCOLS[0] # default protocol to use in case none is provided
 
+DATE_RESPONSE_DELAY=10 # the difference between our current time and when the server send us the payload
+
+
+# the scores to give when a certain header is missing
+
 MISSING_SCORE_CONTENT_ENCODING=5 # no compression is rather bad but that can be dealt with
 MISSING_SCORE_XSS=0 # no protection against cross site scripting is bad
 MISSING_SCORE_CORS=10 # no cors is very safe
 MISSING_SCORE_SERVER_HEADER=5 # cannot determin the type of server (if this is not present something is fishy)
 MISSING_SCORE_XFRAME_HEADER=2 # No x-Frame header is supplied. Clickjacking can happen
 MISSING_SCORE_COOKIE=10 # no cookies is a bonus
+MISSING_SCORE_DATE=3 # no date provided means we cannot determin when it was send

@@ -1,4 +1,3 @@
-
 # MIT License
 # 
 # Copyright (c) 2019 Meyers Tom
@@ -21,30 +20,14 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 # SOFTWARE.
 
-import runner.headers.httpheader as header
-import runner.headers.contentEncodingHeader as encoding
-import runner.headers.XSSHeader as xss
-import runner.headers.CORSHeader as CORS
-import runner.headers.ServerHeader as Server
-import runner.headers.XFrameHeader as XFrame
-import runner.headers.CookieHeader as Cookie
-import runner.headers.DateHeader as Date
+FROM python:latest
 
-# all different headers to resolve
-# they must inherit httpheader at least
-headerResolver = [encoding.ContentEncodingHeader, xss.XSSHeader, CORS.CORSHeader, Server.ServerHeader,
- XFrame.XFrameHeader, Cookie.CookieHeader, Date.DateHeader]
+WORKDIR /usr/src/app
 
+#COPY requirements.txt ./
+#RUN pip install --no-cache-dir -r requirements.txt
 
-def match(httpResponse, headers):
-    """
-    takes a tuple in the form of (str, str)
-    where the first string it the http header type and the second string is the http header value
-    Based on these values it will construct a http header object
-    """
-    key, value = httpResponse
-    for resolver in headerResolver:
-        if resolver.name == key:
-            return resolver(httpResponse[1], headers)
-    # cannot resolve the current header
-    return None
+COPY . .
+
+# default command to run
+CMD [ "python", "-m", "runner", "google.com"]
