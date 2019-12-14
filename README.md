@@ -47,6 +47,7 @@
 * [Extend](#Extend)
   * [Headers](#Headers)
   * [STDout](#STDout)
+  * [unit tests](#unit-tests)
 * [Roadmap](#roadmap)
 * [Contributing](#contributing)
 * [License](#license)
@@ -269,6 +270,29 @@ print(runner.csvgen.generateCSV(domain, normalizedScore, reason))
 ```
 
 into your own output generator
+
+### Unit tests
+
+Running unit tests is as you would do with any other python program.
+Running can be done with the following command
+
+```sh
+python -m unittest discover -s runner/tests -p "*_test.py"
+```
+
+This can also be ran using the docker container
+
+```sh
+docker run -it --rm <container> python -m unittest discover -s runner/tests -p "*_test.py"
+```
+
+And with docker-compose
+
+```sh
+docker-compose run python -m unittest discover -s runner/tests -p "*_test.py"
+```
+
+> adding unit tests is as easy as adding tests to the `runner/tests` directory. You must end the file with `_test.py` otherwise the test runner will not execute said file
 
 <!-- ROADMAP -->
 ## Roadmap
