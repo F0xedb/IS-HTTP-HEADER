@@ -21,7 +21,14 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 # SOFTWARE.
 
-import runner.httpheader as header
+import runner.headers.httpheader as header
+import runner.headers.contentEncodingHeader as encoding
+import runner.headers.XSSHeader as xss
+
+# all different headers to resolve
+# they must inherit httpheader at least
+headerResolver = [encoding.ContentEncodingHeader, xss.XSSHeader]
+
 
 def match(httpResponse, headers):
     """
@@ -29,4 +36,9 @@ def match(httpResponse, headers):
     where the first string it the http header type and the second string is the http header value
     Based on these values it will construct a http header object
     """
-    return header.httpheader(httpResponse[1], headers)
+    key, value = httpResponse
+    for resolver in headerResolver:
+        if resolver.name == key:
+            return resolver(httpResponse[1], headers)
+    # cannot resolve the current header
+    return None

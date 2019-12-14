@@ -28,7 +28,10 @@ class httpheader:
     This is a base class each http header should inherit
     It contains all methods that need to be implemented in order to generate a final result
     """
-
+    name = "HTTP_HEADER_NAME" # this name should match the real http header name. It is used to match the class to the real header
+    reason = runner.config.SCORE_IDEAL # in case no reason was found
+    missingScore = 0 # score to give when the header is not found
+    
     def __init__(self, value, headers):
         """
         Value is the payload supplied with the header
@@ -47,4 +50,4 @@ class httpheader:
         """
         Returns a string why the score is what is is
         """
-        return runner.config.SCORE_IDEAL
+        return self.reason

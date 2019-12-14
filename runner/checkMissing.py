@@ -22,6 +22,19 @@
 # SOFTWARE.
 
 import runner.config
+import runner.headers.contentEncodingHeader
+import runner.builder
+
+def exists(header, headers):
+    """
+    check if a header is set in the list of headers.
+    Returns True is found and False in any other case
+    """
+    for key, value in headers:
+        if header in key:
+            return True
+    return False
+
 
 def check(headers):
     """
@@ -29,4 +42,7 @@ def check(headers):
     Check if there are missing headers
     returns a tuple of the score and the reason
     """
+    for resolver in runner.builder.headerResolver:
+        if not exists(resolver.name, headers):
+            return resolver.missingScore, resolver.badReason[0]
     return 10, runner.config.SCORE_IDEAL

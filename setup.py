@@ -30,5 +30,5 @@ setup(name='httpheaderscan',
       author='Meyers Tom',
       author_email='tom@odex.be',
       url='',
-      packages=['runner'],
+      packages=['runner', 'runner.headers'],
      )

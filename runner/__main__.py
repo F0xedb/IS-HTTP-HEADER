@@ -33,12 +33,15 @@ headers = runner.request.resolve(domain)
 
 totalscore = 0
 lowestScore = 11
+count = 0
 reason = ""
 
 def scoreCheck(score, meaning):
     global reason
     global lowestScore
     global totalscore
+    global count
+    count += 1
     totalscore += score
     if score < lowestScore:
         lowestScore = score
@@ -47,12 +50,13 @@ def scoreCheck(score, meaning):
 # loop over every header and matc it with a http header handler
 for header in headers:
     match = runner.builder.match(header, headers)
-    scoreCheck(match.score(), match.reason())
+    if not match == None:
+        scoreCheck(match.score(), match.reason())
 
 # check if there are missing headers
 missingScore, missingReason = runner.checkMissing.check(headers)
 scoreCheck(missingScore, missingReason)
 
-# we add one to the length of the headers because we also check for missing headers
-normalizedScore = int(totalscore / (len(headers)+1))
+# normalize the output
+normalizedScore = int(totalscore / count)
 print(runner.csvgen.generateCSV(domain, normalizedScore, reason))
