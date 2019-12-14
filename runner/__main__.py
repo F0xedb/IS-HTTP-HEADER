@@ -28,13 +28,23 @@ import runner.builder
 import runner.csvgen
 import runner.checkMissing
 
-domain = runner.input.getInput()
+domain, debug, verbose = runner.input.getInput()
 headers = runner.request.resolve(domain)
 
 totalscore = 0
 lowestScore = 11
 count = 0
 reason = ""
+
+def printVerboseMatch(match):
+        if debug and not verbose:
+            print("[DEBUG]\tHEADER: {}, SCORE: {}, REASON: {}".format(match.name, match.score(), match.reason))
+        if verbose and not debug:
+            print("[DEBUG]\tHEADER: {}, SCORE: {}, REASON: {}, Payload {}".format(match.name, match.score(), match.reason, match.value))
+
+def printVerboseMissing(missingScore, missingReason):
+    if debug or verbose:
+        print("[DEBUG]\tMISSING headers -> SCORE: {}, REASON: {}".format(missingScore, missingReason))
 
 def scoreCheck(score, meaning):
     global reason
@@ -52,9 +62,14 @@ for header in headers:
     match = runner.builder.match(header, headers)
     if not match == None:
         scoreCheck(match.score(), match.reason)
+        printVerboseMatch(match)
 
 # check if there are missing headers
 missingScore, missingReason = runner.checkMissing.check(headers)
+
+printVerboseMissing(missingScore, missingReason)
+
+
 scoreCheck(missingScore, missingReason)
 
 # normalize the output

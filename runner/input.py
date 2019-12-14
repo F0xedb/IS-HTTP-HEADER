@@ -23,12 +23,39 @@
 
 import sys
 import fileinput
+import runner.config
+
+def exclude(list, value=["-v", "-vv", "-vvv"]):
+    """
+    remove value from the list
+    """
+    new = []
+    for item in list:
+        if not item in value:
+            new.append(item)
+    return new
+
+def help():
+    """
+    print the help menu and exit
+    """
+    print("Usage: {} [-h | --help] [-vv] domain".format(runner.config.NAME))
+    print("\t {} -h | --help \t\tprint this help menu".format(runner.config.NAME))
+    print("\t {} -v <domain> \t\tEnable debug messages".format(runner.config.NAME))
+    print("\t {} -vv <domain> \t\tEnable debug messages with more information".format(runner.config.NAME))
+    print("\t {} <domain> \t\tperform a scan on the given domain/URI or URL\n".format(runner.config.NAME))
+    print("Copyright Meyers Tom")
+    print("Licensed under the MIT License")
+    quit()
 
 def getInput():
     """
     Check if the input is null. If that is the case simply listen for stdin
     Returns the input that it got eg a url, uri or domain
+    Second return type is if debug messages should be enabled
     """
     if len(sys.argv) == 1:
         return fileinput.input()[0]
-    return sys.argv[1]
+    if "-h" in sys.argv or "--help" in sys.argv:
+        help()
+    return "".join(exclude(sys.argv[1:], ["-v", "-vv"])), "-v" in sys.argv, "-vv" in sys.argv

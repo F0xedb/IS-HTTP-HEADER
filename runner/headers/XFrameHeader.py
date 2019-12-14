@@ -36,12 +36,12 @@ class XFrameHeader(generic.httpheader):
         """
 
         # gws is the google web server
-        if "SAMEORIGIN" == self.value:
+        if "SAMEORIGIN" == self.value.upper():
             self.reason = "Setting {} to DENY is better that {}".format(self.name, self.value)
             return 9
-        elif "DENY" == self.value:
+        elif "DENY" == self.value.upper():
             return 10
-        elif "allow-from" == self.value:
+        elif "allow-from" == self.value.lower():
             self.reason = "Allowing clickjacking from certain locations can be very dangerous"
             return 5
         

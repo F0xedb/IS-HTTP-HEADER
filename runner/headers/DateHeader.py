@@ -52,8 +52,7 @@ class DateHeader(generic.httpheader):
                 self.reason = self.badReason[1]
                 return 5
         except Exception as e:
-            print(e)
             self.reason = "Date format is not defined as per RFC 7231"
             return 5
-        self.reason = self.badReason[1]
-        return 7
+        # date header is OK
+        return 10

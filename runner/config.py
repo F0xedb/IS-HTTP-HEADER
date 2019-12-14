@@ -31,7 +31,7 @@ PROTOCOLS=["https", "http"] # possible protocols to test
 
 DEFAULT_PROTOCOL=PROTOCOLS[0] # default protocol to use in case none is provided
 
-DATE_RESPONSE_DELAY=10 # the difference between our current time and when the server send us the payload
+DATE_RESPONSE_DELAY=10.0 # the difference between our current time and when the server send us the payload
 
 
 # the scores to give when a certain header is missing

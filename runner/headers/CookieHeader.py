@@ -36,4 +36,5 @@ class CookieHeader(generic.httpheader):
         returns a float containing the score for this header (between 0.0 and 10.0)
         """
         # having cookies is not bad. It just means the server can track you which is never fun
+        self.reason = "A cookie headers has been set"
         return 9
