@@ -35,3 +35,4 @@ Research notes:
 * Started research on standardized http headers
     - http headers on wikipedia (https://en.wikipedia.org/wiki/List_of_HTTP_header_fields)
     - RFCs 7230, 7231, 7232, 7233, 7234, and 7235 contain standardized http headers
+* Python urllib request headers should have the compression option enabled if you want to receive content that has that option

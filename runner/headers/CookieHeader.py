@@ -20,20 +20,20 @@
 # LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 # SOFTWARE.
+import runner.headers.httpheader as generic
+import runner.config
 
-NAME="Qhead" # the name of our program
+class CookieHeader(generic.httpheader):
+    name="Set-Cookie"
+    badReason = ["No cookies exist"]
+    missingScore=runner.config.MISSING_SCORE_COOKIE # no cookies is a good thing
 
-SCORE_IDEAL="Your score is optimal" # message in case nothing is wrong
-
-PING_TIMEOUT=3 # timeout until connection with the URI fails
-
-PROTOCOLS=["https", "http"] # possible protocols to test
-
-DEFAULT_PROTOCOL=PROTOCOLS[0] # default protocol to use in case none is provided
-
-MISSING_SCORE_CONTENT_ENCODING=5 # no compression is rather bad but that can be dealt with
-MISSING_SCORE_XSS=0 # no protection against cross site scripting is bad
-MISSING_SCORE_CORS=10 # no cors is very safe
-MISSING_SCORE_SERVER_HEADER=5 # cannot determin the type of server (if this is not present something is fishy)
-MISSING_SCORE_XFRAME_HEADER=2 # No x-Frame header is supplied. Clickjacking can happen
-MISSING_SCORE_COOKIE=10 # no cookies is a bonus
+    def __init__(self, value, headers):
+        super().__init__(value, headers)
+    
+    def score(self):
+        """
+        returns a float containing the score for this header (between 0.0 and 10.0)
+        """
+        # having cookies is not bad. It just means the server can track you which is never fun
+        return 9

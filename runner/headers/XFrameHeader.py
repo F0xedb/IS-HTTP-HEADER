@@ -41,7 +41,11 @@ class XFrameHeader(generic.httpheader):
             return 9
         elif "DENY" == self.value:
             return 10
-        # Header payload is set wrong
+        elif "allow-from" == self.value:
+            self.reason = "Allowing clickjacking from certain locations can be very dangerous"
+            return 5
+        
+        # Allow all is set which is very dangerous
         self.reason = self.badReason[1]
         # Clickjacking is a posibility
         return 3
