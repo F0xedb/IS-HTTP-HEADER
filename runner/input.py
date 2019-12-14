@@ -55,7 +55,11 @@ def getInput():
     Second return type is if debug messages should be enabled
     """
     if len(sys.argv) == 1:
-        return fileinput.input()[0]
+        return fileinput.input()[0], False, False
     if "-h" in sys.argv or "--help" in sys.argv:
         help()
-    return "".join(exclude(sys.argv[1:], ["-v", "-vv"])), "-v" in sys.argv, "-vv" in sys.argv
+    domain = "".join(exclude(sys.argv[1:], ["-v", "-vv"]))
+    if domain == "":
+        print("Wrong input formation\n")
+        help()
+    return domain, "-v" in sys.argv, "-vv" in sys.argv
