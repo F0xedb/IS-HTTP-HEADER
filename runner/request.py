@@ -22,13 +22,14 @@
 # SOFTWARE.
 
 import urllib.request
+import runner.config
 
 def resolve(domain):
     """
     Returns a list of Tuples containing the http header type and its value.
     It gets this data from performing a http get request to the server
     """
-    response = urllib.request.urlopen(domain)
+    response = urllib.request.urlopen(domain, timeout=runner.config.PING_TIMEOUT)
     headers = response.info().raw_items()
     # convert genertor to a generic list
     list = []

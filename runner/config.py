@@ -23,4 +23,6 @@
 
 NAME="Qhead" # the name of our program
 
-SCORE_IDEAL="Your score is optimal"
+SCORE_IDEAL="Your score is optimal" # message in case nothing is wrong
+
+PING_TIMEOUT=3 # timeout until connection with the URI fails
