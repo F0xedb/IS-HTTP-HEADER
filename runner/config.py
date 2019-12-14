@@ -26,3 +26,7 @@ NAME="Qhead" # the name of our program
 SCORE_IDEAL="Your score is optimal" # message in case nothing is wrong
 
 PING_TIMEOUT=3 # timeout until connection with the URI fails
+
+PROTOCOLS=["https", "http"] # possible protocols to test
+
+DEFAULT_PROTOCOL=PROTOCOLS[0] # default protocol to use in case none is provided
