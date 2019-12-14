@@ -66,6 +66,9 @@
 To get a local copy up and running follow these simple steps.
 This software has been tested on RHEL 8, Arch linux and TOS linux
 It should work on most Operating systems as long as they have Python3 installed with pytz (python timezone)
+> If you don't want to use the external package you can remove the `runner/headers/DateHeader.py` file from the project and remove the entry from the `runner/builder.py` file.
+
+> If you are using `docker` don't forget to edit the `requirements.txt` file
 
 ### Prerequisites
 
