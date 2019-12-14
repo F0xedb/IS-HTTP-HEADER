@@ -25,7 +25,7 @@ import runner.config
 
 class CORSHeader(generic.httpheader):
     name="Access-Control-Allow-Origin"
-    badReason = ["No Cross origin is safe", "Cross origin resource sharing is dangerous" "Cross origin resource sharing on all webpages is dangerous"]
+    badReason = ["No Cross origin is safe", "Cross origin resource sharing is dangerous", "Cross origin resource sharing on all webpages is dangerous"]
     missingScore=runner.config.MISSING_SCORE_CORS# No cors is very safe
     def __init__(self, value, headers):
         super().__init__(value, headers)
