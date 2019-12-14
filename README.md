@@ -43,6 +43,7 @@
 * [Usage](#usage)
   * [General](#general)
   * [Docker](#docker)
+  * [Debug](#debug)
 * [Extend](#Extend)
   * [Headers](#Headers)
   * [STDout](#STDout)
@@ -172,6 +173,27 @@ services:
 3. run a scan to a custom domain without editing the yaml file
 ```sh
 docker-compose run python "python"  "-m" "runner" "<domain>" # where domain is the domain you want to scan
+```
+
+### debug
+
+You can enable debug messages in order to develop or debug you website/ application
+
+For more information run the help menu
+```sh
+python -m runner -h
+```
+
+There are multiple levels of debugging each level will display more information
+
+This debug level will print out all headers, their score and the reason why that header has been assigned their score
+```sh
+python -m runner -v <domain>
+```
+
+This debug level does the same as above but also prints out the header value. In case you don't know why that reason has been given
+```sh
+python -m runner -vv <domain>
 ```
 
 _For more examples, please refer to the [Documentation](https://github.com/F0xedb/IS-HTTP-HEADER)_
